@@ -1,17 +1,41 @@
-def solve_hat_puzzle(prisoner_count, hat_colors):
+import random
+
+def simulate_prisoners():
+    # Create an array to represent the prisoners' hat colors
+    # 0 represents black hat, 1 represents red hat
+    hat_colors = [0, 0, 1]  # One red hat and two black hats initially
     
-    red_hat_count = hat_colors.count("red")
-
-    if red_hat_count > 0:
-        if red_hat_count == 1:
-            return "Prisoner 1: Black Hat"
+    # Shuffle the hat colors randomly
+    random.shuffle(hat_colors)
+    
+    # Determine the index of the prisoner with the red hat
+    red_hat_prisoner_index = hat_colors.index(1)
+    
+    # Remove the red hat prisoner's hat from the array for others' perspectives
+    hat_colors_without_red = hat_colors[:red_hat_prisoner_index] + hat_colors[red_hat_prisoner_index + 1:]
+    
+    # Prisoner's responses based on their perspectives
+    responses = []
+    for i in range(3):
+        prisoner_perspective = hat_colors_without_red[i]
+        other_prisoners_perspective = [hat_colors_without_red[j] for j in range(3) if j != i]
+        
+        if prisoner_perspective == 0:
+            # If the prisoner sees two red hats, he knows he has a black hat
+            responses.append("Black")
         else:
-            return "Prisoner 0: Red Hat"   
-    else:
-        return "No one can determine their hat color"
+            # If the prisoner sees only one red hat, he knows he has the red hat
+            responses.append("Red")
+    
+    return responses
 
-prisoner_count = 3
-hat_colors = ["red", "black", "black"]
+# Run the simulation multiple times to observe the results
+num_simulations = 10000
+correct_count = 0
 
-result = solve_hat_puzzle(prisoner_count, hat_colors)
-print(result)
+for _ in range(num_simulations):
+    responses = simulate_prisoners()
+    if responses.count("Red") == 1:
+        correct_count += 1
+
+print(f"Percentage of correct identifications: {correct_count / num_simulations * 100}%")
