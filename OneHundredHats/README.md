@@ -14,4 +14,13 @@ their response to communicate, as the guard will notice all these tricks (it’s
 devise a strategy so that at most one prisoner remains in jail, and so that at least 99 prisoners are set free.
 How do you do it?
 
-Brainstorm:
+Brainstorm Strategy:
+-the first one will always have a 50-50 chance of getting it right
+
+-if he says he has a red hat he must have seen a even number of red hats in front of him
+a. If 99’th prisoner sees even number of red hats in front of him, then his color is black. 
+b. If 99’th prisoner sees odd number of red hats in front of him, then his color is red. 
+
+-if he says he has a black hat then there must have been a odd number of red hats in front of him
+a. If 99’th prisoner sees even number of red hats in front of him, then his color is Red. 
+b. If 99’th prisoner sees odd number of red hats in front of him, then his color is Black. 
