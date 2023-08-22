@@ -63,4 +63,4 @@ if not incorrect_guesses:
 else:
     print("There were wrong guesses:")
     for i in incorrect_guesses:
-        print(f'Guess {i} was wrong. The guess was {prisoner_guesses[i+1]}, but the correct hat color was {hat_colors[i+1]}')
+        print(f'Guess {i} was wrong. The guess was {prisoner_guesses[i]}, but the correct hat color was {hat_colors[i]}')
